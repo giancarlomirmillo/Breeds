@@ -41,13 +41,13 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     	client.authorize((err, tokens) => {
     	sheets.spreadsheets.values.get({
           	auth: client,
-        	spreadsheetId: process.env.SPREADSHEETID,
+        	spreadsheetId: process.env.SPREADSHEETID, //The ID of the googlesheet with the data
           	range: `Sheet1!A2:B`
         }).then((res) => {
             if (err) {
-              console.log("The API returned an error: " + err);
-              agent.add("Mi dispiace ma non ne so abbastanza");
-              return;
+              console.log("Spreadshet returned an error: " + err);
+              result = "Mi dispiace ma non ne so abbastanza";
+              resolve(result)
             } else {
               const rows = res.data.values;
               let row;
