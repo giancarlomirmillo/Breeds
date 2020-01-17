@@ -9,9 +9,10 @@ const {google} = require('googleapis');
 process.env.DEBUG = 'dialogflow:debug'; // enables lib debugging statements
 const sheets = google.sheets('v4');
 
+
 const serviceAccount = {
-  "private_key": process.env.PRIVATEKEY,
-  "client_email": process.env.CLIENTEMAIL
+  "private_key": process.env.PRIVATEKEY, //service account key e.g. '-----BEGIN PRIVATE KEY-----\XXXXXXXXXX...'
+  "client_email": process.env.CLIENTEMAIL //service account email 'example@project_rxdfre.iam.gserviceaccount.com'
 };
 
 const client = new google.auth.JWT({
@@ -73,9 +74,6 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   }
   function welcome(agent) {
     agent.add(`Welcome to my agent!`);
-  }
-  function test(agent) {
-    agent.add(`it works now`);
   }
  
   function fallback(agent) {
