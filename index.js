@@ -11,8 +11,8 @@ const sheets = google.sheets('v4');
 
 
 const serviceAccount = {
-  "private_key": process.env.PRIVATEKEY, //service account key e.g. '-----BEGIN PRIVATE KEY-----\XXXXXXXXXX...'
-  "client_email": process.env.CLIENTEMAIL //service account email 'example@project_rxdfre.iam.gserviceaccount.com'
+  "private_key": process.env.815c9d9ec96af77540984f1aa0d58a1337a875b2, //service account key e.g. '-----BEGIN PRIVATE KEY-----\XXXXXXXXXX...'
+  "client_email": process.env.dialogflow-tfqaew@knowledgebase-soxdss.iam.gserviceaccount.com//service account email 'example@project_rxdfre.iam.gserviceaccount.com'
 };
 
 const client = new google.auth.JWT({
@@ -30,9 +30,9 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
 
   let responsePhrases = [
       // Add varying responses to alternate the responses.
-      "Una razza davvero particolare! Se vuoi saperne di più leggi qui:",
-      "Più che una razza è una filosofia di vita! Vuoi conoscerla meglio? Allora non perderti questa intervista:",
-      "Complimenti per la scelta! Qui trovi tutte le informazioni:"
+      "Certo, ecco le informazioni che ti servono:",
+      "Ecco i dati di:",
+      "Subito le info che ti interessano:"
     ];
   let result;
   function spreadsheet (agent){
@@ -41,8 +41,8 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     	client.authorize((err, tokens) => {
     	sheets.spreadsheets.values.get({
           	auth: client,
-        	spreadsheetId: process.env.SPREADSHEETID, //The ID of the googlesheet with the data
-          	range: `Sheet1!A2:B`
+        	spreadsheetId: process.env.https:https://docs.google.com/spreadsheets/d/1obRQ7I-KLJbz1Xp0TQHkzRiby9Jtv7vbjkBwATB4YaM/edit?usp=sharing
+          	range: `Sheet1!C2:B`
         }).then((res) => {
             if (err) {
               console.log("Spreadshet returned an error: " + err);
@@ -73,12 +73,12 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     });
   }
   function welcome(agent) {
-    agent.add(`Welcome to my agent!`);
+    agent.add(`Benvenuto sono il tuo assistente digitale!`);
   }
  
   function fallback(agent) {
-    agent.add(`I didn't understand`);
-    agent.add(`I'm sorry, can you try again?`);
+    agent.add(`Oops non ho capito`);
+    agent.add(`Scusa protresti ripeterlo?`);
   }
 
   let intentMap = new Map();
